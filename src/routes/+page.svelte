@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="pl-3">
+
+	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
+
+	<label class="form-control pb-5">
+		<div class="label">
+			<span class="label-text">Enter Throughput Data</span>
+		</div>
+		<textarea class="textarea textarea-bordered h-24" placeholder="throughput data"></textarea>
+	</label>
+
+	<button class="btn">Run Trials</button>
+
+</div>
+
