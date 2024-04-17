@@ -2,14 +2,16 @@
 
 	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
 
-	<label class="form-control pb-5">
-		<div class="label">
-			<span class="label-text">Enter Throughput Data</span>
-		</div>
-		<textarea class="textarea textarea-bordered h-24" placeholder="throughput data"></textarea>
-	</label>
+	<form method="POST">
 
-	<button class="btn">Run Trials</button>
+		<label class="form-control pb-5">
+			<div class="label">
+				<span class="label-text">Enter Throughput Data</span>
+			</div>
+			<textarea class="textarea textarea-bordered h-24" placeholder="throughput data"></textarea>
+		</label>
 
+		<button class="btn">Run Trials</button>
+	</form>
 </div>
 
