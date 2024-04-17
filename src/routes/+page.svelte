@@ -8,7 +8,7 @@
 			<div class="label">
 				<span class="label-text">Enter Throughput Data</span>
 			</div>
-			<textarea class="textarea textarea-bordered h-24" placeholder="throughput data"></textarea>
+			<textarea name="throughputs" class="textarea textarea-bordered h-24" placeholder="throughput data"></textarea>
 		</label>
 
 		<button class="btn">Run Trials</button>
