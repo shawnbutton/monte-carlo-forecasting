@@ -1,3 +1,7 @@
+<script lang="ts">
+	export let data;
+</script>
+
 <div class="pl-3">
 
 	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
@@ -13,5 +17,10 @@
 
 		<button class="btn">Run Trials</button>
 	</form>
+
+	{#each data.results as result}
+		{result}<br/>
+	{/each}
+
 </div>
 
