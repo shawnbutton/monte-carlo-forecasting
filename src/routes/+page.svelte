@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 
+	import { copy } from 'svelte-copy';
+
 	export let data;
 
 	$: displayed = formatData(data.results);
@@ -49,5 +51,9 @@
 		<textarea name="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly placeholder="forecast data"
 							bind:value="{displayed}"></textarea>
 	</label>
+
+	<button class="btn" use:copy={displayed}>
+		Copy to Clipboard
+	</button>
 
 </div>
