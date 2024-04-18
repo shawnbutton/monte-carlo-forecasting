@@ -3,7 +3,7 @@
 
 	export let data;
 
-	$: displayed = formatData(data.results)
+	$: displayed = formatData(data.results);
 
 	const formatData = (weeks: number[][]) => {
 		const header = `"Period", "95%", "80%", "50%", "20%", "5%"\n`;
@@ -15,8 +15,8 @@
 
 					return `${week + 1}, ${thisWeek[95]}, ${thisWeek[80]}, ${thisWeek[50]}, ${thisWeek[20]}, ${thisWeek[5]}`;
 				})
-		.join('\n');
-	}
+				.join('\n');
+	};
 
 </script>
 
@@ -24,13 +24,21 @@
 
 	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
 
-	<form method="POST" use:enhance>
+	<form method="POST" use:enhance={() => {
+    return async ({ update }) => {
+      update({ reset: false });
+    };
+  }}
+
+
+	>
 
 		<label class="form-control pb-5">
 			<div class="label">
 				<span class="label-text">Enter Throughput Data</span>
 			</div>
-			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize" placeholder="throughput data"></textarea>
+			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
+								placeholder="throughput data"></textarea>
 		</label>
 
 		<button class="btn">Run Trials</button>
@@ -40,7 +48,8 @@
 		<div class="label">
 			<span class="label-text">Forecast</span>
 		</div>
-		<textarea name="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly placeholder="forecast data" bind:value="{displayed}"></textarea>
+		<textarea name="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly placeholder="forecast data"
+							bind:value="{displayed}"></textarea>
 	</label>
 
 </div>
