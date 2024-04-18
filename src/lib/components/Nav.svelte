@@ -18,38 +18,13 @@
 	}
 </script>
 
-<nav>
-	<ul>
-		<li>
-			<a href="/static">Home</a>
-		</li>
-		<li>
-			<a href="/about">About</a>
-		</li>
-		<li>
-			<button aria-label="toggle theme" on:click={toggle_theme}>
-				<Sun />
-			</button>
-		</li>
-	</ul>
-</nav>
-
-<style>
-	nav {
-		background-color: var(--nav-color);
-		padding: 1rem;
-	}
-
-	ul {
-		list-style-type: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 1.5rem;
-	}
-
-	button {
-		width: 1.5rem;
-		height: 1.5rem;
-	}
-</style>
+<div class="navbar bg-base-100">
+	<div class="flex-1">
+		<a href="/" class="btn btn-ghost text-xl">Monte Carlo Forecaster</a>
+	</div>
+	<div class="flex-none">
+		<button aria-label="toggle theme" on:click={toggle_theme}>
+			<Sun />
+		</button>
+	</div>
+</div>

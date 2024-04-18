@@ -3,16 +3,9 @@
 	import Nav from "$lib/components/Nav.svelte";
 </script>
 
-<Nav />
 
-<div class="wrapper">
+<div class="pl-10 pr-10">
+	<Nav />
 	<slot />
 </div>
 
-<style>
-    .wrapper {
-        max-width: 38rem;
-        margin-inline: auto;
-        padding-inline: 1rem;
-    }
-</style>

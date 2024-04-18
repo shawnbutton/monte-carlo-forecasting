@@ -22,8 +22,6 @@
 
 <div class="pl-3">
 
-	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
-
 	<form method="POST" use:enhance={() => {
     return async ({ update }) => {
       update({ reset: false });
