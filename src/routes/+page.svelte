@@ -30,7 +30,7 @@
 			<div class="label">
 				<span class="label-text">Enter Throughput Data</span>
 			</div>
-			<textarea name="throughputs" class="textarea textarea-bordered h-40 resize" placeholder="throughput data"></textarea>
+			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize" placeholder="throughput data"></textarea>
 		</label>
 
 		<button class="btn">Run Trials</button>
@@ -40,7 +40,7 @@
 		<div class="label">
 			<span class="label-text">Forecast</span>
 		</div>
-		<textarea name="forecast" class="textarea textarea-bordered h-40 resize" readonly placeholder="forecast data" bind:value="{displayed}"></textarea>
+		<textarea name="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly placeholder="forecast data" bind:value="{displayed}"></textarea>
 	</label>
 
 </div>
