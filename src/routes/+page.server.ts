@@ -1,7 +1,7 @@
 import type { RequestEvent } from './$types';
 import { runForRangeOfWeeks } from '$lib/monte_carlo';
 
-let results = [];
+let results: number[][] = [];
 
 export function load() {
 	return {
@@ -17,11 +17,13 @@ export const actions = {
 
 		const throughputData = data.get('throughputs')!;
 
-		const throughputs = (throughputData as string)
+		let throughputs = (throughputData as string)
 			.split('\n')
 			.filter(period => period)
 			.filter(Number)
 			.map(Number);
+
+		if (throughputs.length === 0) throughputs = [0]
 
 		const forecasts = runForRangeOfWeeks(throughputs, 25)
 
@@ -29,7 +31,6 @@ export const actions = {
 		console.log(throughputs);
 
 		results = forecasts;
-
 
 	}
 };

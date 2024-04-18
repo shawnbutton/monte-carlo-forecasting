@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms'
 	export let data;
 </script>
 
@@ -6,7 +7,7 @@
 
 	<h1 class="text-2xl pb-5">Monte Carlo Forecaster</h1>
 
-	<form method="POST">
+	<form method="POST" use:enhance>
 
 		<label class="form-control pb-5">
 			<div class="label">
@@ -21,7 +22,7 @@
 	"95%", "80%", "50%", "20%", "5%"
 	<br />
 	{#each data.results as thisWeek, week}
-		{week},
+		{week + 1},
 		{thisWeek['95']},
 		{thisWeek['80']},
 		{thisWeek['50']},
