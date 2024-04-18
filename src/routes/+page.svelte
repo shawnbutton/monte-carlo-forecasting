@@ -19,7 +19,7 @@
 		<button class="btn">Run Trials</button>
 	</form>
 
-	"95%", "80%", "50%", "20%", "5%"
+	"Period", "95%", "80%", "50%", "20%", "5%"
 	<br />
 	{#each data.results as thisWeek, week}
 		{week + 1},
