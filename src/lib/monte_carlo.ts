@@ -46,16 +46,29 @@ const runSimulations = (samples: number[]) => {
 };
 
 const runForRangeOfWeeks = (samples: number[], weeks: number) => {
-	let allSims = '"95%","80%","50%","20%","5%"\n';
-
+	const allSims = []
 	for (let week = 1; week < weeks + 1; week++) {
-		const thisWeek = runForWeek(samples, week);
-		allSims += `${week},${thisWeek['95']},${thisWeek['80']},${thisWeek['50']},${thisWeek['20']},${thisWeek['5']}
-`;
+		const thisWeek = runForWeek(samples, week)
+		allSims.push(thisWeek)
 	}
 
 	return allSims;
 };
+
+//
+// const runForRangeOfWeeks = (samples: number[], weeks: number) => {
+// 	let allSims = '"95%","80%","50%","20%","5%"\n';
+//
+// 	for (let week = 1; week < weeks + 1; week++) {
+// 		const thisWeek = runForWeek(samples, week);
+// 		allSims += `${week},${thisWeek['95']},${thisWeek['80']},${thisWeek['50']},${thisWeek['20']},${thisWeek['5']}
+// `;
+// 	}
+//
+// 	return allSims;
+// };
+//
+
 
 
 export {

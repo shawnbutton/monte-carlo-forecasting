@@ -18,9 +18,16 @@
 		<button class="btn">Run Trials</button>
 	</form>
 
-	{#each data.results as result}
-		{result}<br/>
+	"95%", "80%", "50%", "20%", "5%"
+	<br />
+	{#each data.results as thisWeek, week}
+		{week},
+		{thisWeek['95']},
+		{thisWeek['80']},
+		{thisWeek['50']},
+		{thisWeek['20']},
+		{thisWeek['5']}
+		<br>
 	{/each}
 
 </div>
-
