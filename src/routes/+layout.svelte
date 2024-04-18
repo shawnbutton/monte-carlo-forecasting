@@ -1,5 +1,7 @@
 <script>
-	import "tailwindcss/tailwind.css";
+	import 'tailwindcss/tailwind.css';
 </script>
 
-<slot />
+<div class="pl-3 pr-3">
+	<slot />
+</div>

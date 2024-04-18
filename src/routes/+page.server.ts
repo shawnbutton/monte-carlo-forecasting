@@ -11,8 +11,6 @@ export function load() {
 
 export const actions = {
 	default: async (event: RequestEvent) => {
-		// TODO log the user in
-
 		const data = await event.request.formData();
 
 		const throughputData = data.get('throughputs')!;
@@ -25,13 +23,7 @@ export const actions = {
 
 		if (throughputs.length === 0) throughputs = [0]
 
-		const forecasts = runForRangeOfWeeks(throughputs, 25)
-
-		console.log('what!!!');
-		console.log(throughputs);
-
-		results = forecasts;
-
+		results = runForRangeOfWeeks(throughputs, 25);
 	}
-};
+}
 
