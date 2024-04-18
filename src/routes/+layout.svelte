@@ -1,7 +1,18 @@
 <script>
 	import 'tailwindcss/tailwind.css';
+	import Nav from "$lib/components/Nav.svelte";
 </script>
 
-<div class="pl-3 pr-3">
+<Nav />
+
+<div class="wrapper">
 	<slot />
 </div>
+
+<style>
+    .wrapper {
+        max-width: 38rem;
+        margin-inline: auto;
+        padding-inline: 1rem;
+    }
+</style>
