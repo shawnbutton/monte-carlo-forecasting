@@ -7,6 +7,8 @@
 
 	$: displayed = formatData(data.results);
 
+	let trials = 10000
+
 	const formatData = (weeks: number[][]) => {
 		const header = `"Period", "95%", "80%", "50%", "20%", "5%"\n`;
 		console.log(weeks);
@@ -53,7 +55,10 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
-		<button class="btn">Run Trials</button>
+
+		<input type="range" min="10000" max="1000000" 	bind:value="{trials}" class="range" step="10000" />
+
+		<button class="btn">Run {trials} Trials</button>
 	</form>
 
 	<label class="form-control pb-5">
