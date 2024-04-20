@@ -20,6 +20,20 @@
 				.join('\n');
 	};
 
+	const dataUrl = (data: string) => 'data:x-application/text,' + data
+
+	const download = () => {
+		// window.open(dataUrl(displayed));
+
+		var downloadLink = document.createElement("a");
+		downloadLink.href = dataUrl(displayed);
+		downloadLink.download = "forecast.csv";
+
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	};
+
 </script>
 
 <div class="pl-3">
@@ -48,12 +62,17 @@
 		<div class="label">
 			<span class="label-text">Forecast</span>
 		</div>
-		<textarea name="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly placeholder="forecast data"
+		<textarea name="forecast" id="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly
+							placeholder="forecast data"
 							bind:value="{displayed}"></textarea>
 	</label>
 
 	<button class="btn" use:copy={displayed}>
 		Copy to Clipboard
+	</button>
+
+	<button class="btn" on:click={download}>
+		Download CSV
 	</button>
 
 </div>
