@@ -23,8 +23,6 @@
 	const dataUrl = (data: string) => 'data:x-application/text,' + data
 
 	const download = () => {
-		// window.open(dataUrl(displayed));
-
 		var downloadLink = document.createElement("a");
 		downloadLink.href = dataUrl(displayed);
 		downloadLink.download = "forecast.csv";
