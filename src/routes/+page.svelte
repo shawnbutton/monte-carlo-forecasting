@@ -2,25 +2,13 @@
 	import { enhance } from '$app/forms';
 
 	import { copy } from 'svelte-copy';
+	import { formatForecast } from '$lib/monte_carlo/formatForecast';
 
 	export let data;
 
-	$: displayed = formatData(data.results);
+	$: displayed = formatForecast(data.results);
 
 	let trials = 10000
-
-	const formatData = (weeks: number[][]) => {
-		const header = `"Period", "95%", "80%", "50%", "20%", "5%"\n`;
-		console.log(weeks);
-		return header +
-			weeks
-				.map((thisWeek, week) => {
-					console.log('yep' + week + '|' + thisWeek + '/n');
-
-					return `${week + 1}, ${thisWeek[95]}, ${thisWeek[80]}, ${thisWeek[50]}, ${thisWeek[20]}, ${thisWeek[5]}`;
-				})
-				.join('\n');
-	};
 
 	const dataUrl = (data: string) => 'data:x-application/text,' + data
 
@@ -43,8 +31,6 @@
       update({ reset: false });
     };
   }}
-
-
 	>
 
 		<label class="form-control pb-5">

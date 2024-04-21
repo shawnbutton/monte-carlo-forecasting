@@ -1,5 +1,5 @@
 import type { RequestEvent } from './$types';
-import { runForRangeOfWeeks } from '$lib/monte_carlo';
+import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo';
 
 let results: number[][] = [];
 
