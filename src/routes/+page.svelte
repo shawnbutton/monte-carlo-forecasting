@@ -56,7 +56,7 @@
 		</label>
 
 
-		<input type="range" min="10000" max="1000000" 	bind:value="{trials}" class="range" step="10000" />
+		<input name="trials" type="range" min="10000" max="1000000" 	bind:value="{trials}" class="range" step="10000" />
 
 		<button class="btn">Run {trials} Trials</button>
 	</form>

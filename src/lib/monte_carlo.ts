@@ -1,8 +1,11 @@
-const runForWeek = (samples: number[], weeks: number) => {
+const runForWeek = (samples: number[], weeks: number, trials: number) => {
 	const numSamples = samples.length;
 
 	const sims: number[] = [];
-	for (let i = 0; i < 10000; i++) {
+
+	console.log('running trials:' + trials);
+
+	for (let i = 0; i < trials; i++) {
 
 		let stories = 0;
 
@@ -45,10 +48,10 @@ const runSimulations = (samples: number[]) => {
 
 };
 
-const runForRangeOfWeeks = (samples: number[], weeks: number) => {
+const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) => {
 	const allSims = []
 	for (let week = 1; week < weeks + 1; week++) {
-		const thisWeek = runForWeek(samples, week)
+		const thisWeek = runForWeek(samples, week, trials)
 		allSims.push(thisWeek)
 	}
 
