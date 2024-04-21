@@ -49,7 +49,7 @@ const runSimulations = (samples: number[]) => {
 };
 
 const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) => {
-	const allSims = []
+	const allSims: number[][] = []
 	for (let week = 1; week < weeks + 1; week++) {
 		const thisWeek = runForWeek(samples, week, trials)
 		allSims.push(thisWeek)
