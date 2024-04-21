@@ -1,11 +1,11 @@
-const runForWeek = (samples: number[], weeks: number, trials: number) => {
+const runForWeek = (samples: number[], weeks: number, numTrials: number) => {
 	const numSamples = samples.length;
 
 	const sims: number[] = [];
 
-	console.log('running trials:' + trials);
+	console.log('running trials:' + numTrials);
 
-	for (let i = 0; i < trials; i++) {
+	for (let i = 0; i < numTrials; i++) {
 
 		let stories = 0;
 
@@ -23,8 +23,10 @@ const runForWeek = (samples: number[], weeks: number, trials: number) => {
 
 	const results: number[] = [];
 
+	console.log(results.length);
+
 	for (let i = 0; i < 99; i++) {
-		results[i] = sorted[i * 100];
+		results[i] = sorted[(i + 1) * (numTrials / 100)];
 	}
 
 	return results;
