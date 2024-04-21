@@ -21,7 +21,7 @@
 
 	let throughputData: string;
 
-	const doIt = () => {
+	const doIt = async () => {
 		let throughputs = throughputData
 			.split('\n')
 			.filter(period => period)
@@ -38,13 +38,7 @@
 </script>
 
 <div class="pl-3">
-
-	<!--	<form method="POST" use:enhance={() => {-->
-	<!--    return async ({ update }) => {-->
-	<!--      update({ reset: false });-->
-	<!--    };-->
-	<!--  }}-->
-	<!--	>-->
+	
 
 	<label class="form-control pb-5">
 		<div class="label">
