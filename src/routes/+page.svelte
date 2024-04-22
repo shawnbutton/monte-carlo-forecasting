@@ -17,10 +17,6 @@
 		data.results = [];
 	};
 
-	const handleSubmit = () => {
-		isLoading = true
-	};
-
 	const dataUrl = (data: string) => 'data:x-application/text,' + data;
 
 	const download = () => {
