@@ -19,8 +19,9 @@
 
 	const dataUrl = (data: string) => 'data:x-application/text,' + data;
 
-	const download = () => {
-		var downloadLink = document.createElement('a');
+	// hacky html way to download forecast to file
+	const downloadTextareaContents = () => {
+		const downloadLink = document.createElement('a');
 		downloadLink.href = dataUrl(displayed);
 		downloadLink.download = 'forecast.csv';
 
@@ -67,7 +68,7 @@
 		Copy to Clipboard
 	</button>
 
-	<button class="btn" on:click={download}>
+	<button class="btn" on:click={downloadTextareaContents}>
 		Download CSV
 	</button>
 
