@@ -52,7 +52,7 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
-		<input name="trials" type="range" min="10000" max="1000000" bind:value="{numtrials}" class="range w-96"
+		<input name="trials" type="range" min="10000" max="100000" bind:value="{numtrials}" class="range w-96"
 					 step="10000" />
 
 		<br />
