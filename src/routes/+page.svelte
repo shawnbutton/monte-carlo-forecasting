@@ -38,6 +38,7 @@
     return async ({ update }) => {
       update({ reset: false })
 			isLoading = false
+
     };
   }}
 	>
@@ -46,7 +47,7 @@
 			<div class="label">
 				<span class="label-text">Enter Throughput Data</span>
 			</div>
-			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
+			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize" bind:value="{data.throughputString}"
 								placeholder="throughput data"></textarea>
 		</label>
 
