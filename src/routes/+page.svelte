@@ -8,7 +8,8 @@
 
 	$: displayed = formatForecast(data.results);
 
-	let numtrials = 10000;
+	let numTrials = 10000;
+	let numPeriods = 25;
 
 	let isLoading = false;
 
@@ -38,42 +39,53 @@
     return async ({ update }) => {
       update({ reset: false })
 			isLoading = false
-
     };
   }}
 	>
 
 		<label class="form-control pb-5">
 			<div class="label">
-				<span class="label-text">Enter Throughput Data</span>
+				<span class="label-text text-lg">Enter Throughput Data</span>
 			</div>
 			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
 								bind:value="{data.throughputString}"
 								placeholder="throughput data"></textarea>
 		</label>
 
-		<input name="trials" type="range" min="10000" max="100000" bind:value="{numtrials}" class="range w-96"
-					 step="10000" />
+		Run {numTrials} trials: <input name="trials" type="range" min="10000" max="100000" bind:value="{numTrials}"
+																	 class="range w-96"
+																	 step="10000" />
 
 		<br />
+		<br />
 
-		<button class="btn {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run {numtrials} Trials</button>
+		Forecast {numPeriods} period{numPeriods > 1 ? 's' : ''}: <input name="periods" type="range" min="1" max="100"
+																																		bind:value="{numPeriods}" class="range w-96"
+																																		step="1" />
+
+		<br />
+		<br />
+
+
+		<button class="btn btn-primary {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run Trials</button>
 	</form>
+
+	<br />
 
 	<label class="form-control pb-5">
 		<div class="label">
-			<span class="label-text">Forecast</span>
+			<span class="label-text text-lg">Forecast</span>
 		</div>
 		<textarea name="forecast" id="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly
 							placeholder="forecast data"
 							bind:value="{displayed}"></textarea>
 	</label>
 
-	<button class="btn" use:copy={displayed}>
+	<button class="btn btn-primary" use:copy={displayed}>
 		Copy to Clipboard
 	</button>
 
-	<button class="btn" on:click={downloadTextareaContents}>
+	<button class="btn btn-primary" on:click={downloadTextareaContents}>
 		Download CSV
 	</button>
 
