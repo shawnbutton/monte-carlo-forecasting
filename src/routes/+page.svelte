@@ -37,15 +37,12 @@
 
 <div class="pl-3">
 
-	<form method="POST"
-				on:submit|preventDefault={handleSubmit} use:enhance={()=>{
-          return async ({result})=>{
-              if(result){
-                  isLoading = false
-              }
-
-          }
-      }}
+	<form method="POST" use:enhance={() => {
+    return async ({ update }) => {
+      update({ reset: false })
+			isLoading = false
+    };
+  }}
 	>
 
 		<label class="form-control pb-5">
