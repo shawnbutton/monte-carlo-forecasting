@@ -47,11 +47,15 @@
 			<div class="label">
 				<span class="label-text">Enter Throughput Data</span>
 			</div>
-			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize" bind:value="{data.throughputString}"
+			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
+								bind:value="{data.throughputString}"
 								placeholder="throughput data"></textarea>
 		</label>
 
-		<input name="trials" type="range" min="10000" max="1000000" bind:value="{numtrials}" class="range" step="10000" />
+		<input name="trials" type="range" min="10000" max="1000000" bind:value="{numtrials}" class="range w-96"
+					 step="10000" />
+
+		<br />
 
 		<button class="btn {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run {numtrials} Trials</button>
 	</form>
