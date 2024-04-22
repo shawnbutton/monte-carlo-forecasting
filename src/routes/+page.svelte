@@ -1,58 +1,55 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+
 	import { copy } from 'svelte-copy';
 	import { formatForecast } from '$lib/monte_carlo/formatForecast';
-	import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo';
 
-	let displayed: string
+	export let data;
 
-	let trials = 10000;
+	$: displayed = formatForecast(data.results);
 
-	const dataUrl = (data: string) => 'data:x-application/text,' + data;
+	let trials = 10000
+
+	const dataUrl = (data: string) => 'data:x-application/text,' + data
+
+	const displayWaiting = () => {
+			data.results = []
+	}
 
 	const download = () => {
-		var downloadLink = document.createElement('a');
+		var downloadLink = document.createElement("a");
 		downloadLink.href = dataUrl(displayed);
-		downloadLink.download = 'forecast.csv';
+		downloadLink.download = "forecast.csv";
 
 		document.body.appendChild(downloadLink);
 		downloadLink.click();
 		document.body.removeChild(downloadLink);
 	};
 
-	let throughputData: string;
-
-	const doIt = async () => {
-		let throughputs = throughputData
-			.split('\n')
-			.filter(period => period)
-			.filter(Number)
-			.map(Number);
-
-		if (throughputs.length === 0) throughputs = [0];
-
-		let forecast = runForRangeOfWeeks(throughputs, 25, trials);
-
-		displayed = formatForecast(forecast);
-	};
-
 </script>
 
 <div class="pl-3">
-	
 
-	<label class="form-control pb-5">
-		<div class="label">
-			<span class="label-text">Enter Throughput Data</span>
-		</div>
-		<textarea name="throughputs" bind:value={throughputData} class="textarea textarea-bordered h-40 w-96 resize"
-							placeholder="throughput data"></textarea>
-	</label>
+	<form method="POST" use:enhance={() => {
+    return async ({ update }) => {
+      update({ reset: false });
+    };
+  }}
+	>
+
+		<label class="form-control pb-5">
+			<div class="label">
+				<span class="label-text">Enter Throughput Data</span>
+			</div>
+			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
+								placeholder="throughput data"></textarea>
+		</label>
 
 
-	<input name="trials" type="range" min="10000" max="1000000" bind:value="{trials}" class="range" step="10000" />
+		<input name="trials" type="range" min="10000" max="1000000" 	bind:value="{trials}" class="range" step="10000" />
 
-	<button class="btn" on:click={doIt}>Run {trials} Trials</button>
-	<!--	</form>-->
+		<button class="btn" on:click={displayWaiting}>Run {trials} Trials</button>
+	</form>
 
 	<label class="form-control pb-5">
 		<div class="label">

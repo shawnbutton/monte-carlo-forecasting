@@ -1,11 +1,9 @@
-const runForWeek = (samples: number[], weeks: number, numTrials: number) => {
+const runForWeek = (samples: number[], weeks: number, trials: number) => {
 	const numSamples = samples.length;
 
 	const sims: number[] = [];
 
-	console.log('running trials:' + numTrials);
-
-	for (let i = 0; i < numTrials; i++) {
+	for (let i = 0; i < trials; i++) {
 
 		let stories = 0;
 
@@ -23,10 +21,8 @@ const runForWeek = (samples: number[], weeks: number, numTrials: number) => {
 
 	const results: number[] = [];
 
-	console.log(results.length);
-
 	for (let i = 0; i < 99; i++) {
-		results[i] = sorted[(i + 1) * (numTrials / 100)];
+		results[i] = sorted[(i + 1) * (trials / 100)];
 	}
 
 	return results;
@@ -59,22 +55,6 @@ const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) =>
 
 	return allSims;
 };
-
-//
-// const runForRangeOfWeeks = (samples: number[], weeks: number) => {
-// 	let allSims = '"95%","80%","50%","20%","5%"\n';
-//
-// 	for (let week = 1; week < weeks + 1; week++) {
-// 		const thisWeek = runForWeek(samples, week);
-// 		allSims += `${week},${thisWeek['95']},${thisWeek['80']},${thisWeek['50']},${thisWeek['20']},${thisWeek['5']}
-// `;
-// 	}
-//
-// 	return allSims;
-// };
-//
-
-
 
 export {
 	runSimulations, runForWeek, runForRangeOfWeeks
