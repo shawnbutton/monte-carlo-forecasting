@@ -8,18 +8,25 @@
 
 	$: displayed = formatForecast(data.results);
 
-	let trials = 10000
+	let numtrials = 10000;
 
-	const dataUrl = (data: string) => 'data:x-application/text,' + data
+	let isLoading = false;
 
-	const displayWaiting = () => {
-			data.results = []
-	}
+	const startTrials = () => {
+		isLoading = true;
+		data.results = [];
+	};
+
+	const handleSubmit = () => {
+		isLoading = true
+	};
+
+	const dataUrl = (data: string) => 'data:x-application/text,' + data;
 
 	const download = () => {
-		var downloadLink = document.createElement("a");
+		var downloadLink = document.createElement('a');
 		downloadLink.href = dataUrl(displayed);
-		downloadLink.download = "forecast.csv";
+		downloadLink.download = 'forecast.csv';
 
 		document.body.appendChild(downloadLink);
 		downloadLink.click();
@@ -30,11 +37,15 @@
 
 <div class="pl-3">
 
-	<form method="POST" use:enhance={() => {
-    return async ({ update }) => {
-      update({ reset: false });
-    };
-  }}
+	<form method="POST"
+				on:submit|preventDefault={handleSubmit} use:enhance={()=>{
+          return async ({result})=>{
+              if(result){
+                  isLoading = false
+              }
+
+          }
+      }}
 	>
 
 		<label class="form-control pb-5">
@@ -45,10 +56,9 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
+		<input name="trials" type="range" min="10000" max="1000000" bind:value="{numtrials}" class="range" step="10000" />
 
-		<input name="trials" type="range" min="10000" max="1000000" 	bind:value="{trials}" class="range" step="10000" />
-
-		<button class="btn" on:click={displayWaiting}>Run {trials} Trials</button>
+		<button class="btn {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run {numtrials} Trials</button>
 	</form>
 
 	<label class="form-control pb-5">

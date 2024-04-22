@@ -36,7 +36,8 @@ export const actions = {
 
 		if (throughputs.length === 0) throughputs = [0]
 
-		results = runForRangeOfWeeks(throughputs, 25, trials);
+		let forecast = runForRangeOfWeeks(throughputs, 25, trials);
+		results = forecast;
 	}
 }
 
