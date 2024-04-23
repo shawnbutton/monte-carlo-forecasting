@@ -52,24 +52,23 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
-		<input name="trials" type="range" min="10000" max="100000" bind:value="{numTrials}"
-																	 class="range w-96"
-																	 step="10000" />
-		<br/>
-		Run {numTrials} trials
-		
-		<br />
-		<br />
-
 		<input name="periods" type="range" min="1" max="100"
-																																		bind:value="{numPeriods}" class="range w-96"
-																																		step="1" />
-		<br/>
+					 bind:value="{numPeriods}" class="range w-96"
+					 step="1" />
+		<br />
 		Forecast {numPeriods} period{numPeriods > 1 ? 's' : ''}:
 
 		<br />
 		<br />
 
+		<input name="trials" type="range" min="10000" max="100000" bind:value="{numTrials}"
+					 class="range w-96"
+					 step="10000" />
+		<br />
+		Run {numTrials} trials
+
+		<br />
+		<br />
 
 		<button class="btn btn-primary {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run Trials</button>
 	</form>
