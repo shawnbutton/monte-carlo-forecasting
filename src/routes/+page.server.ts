@@ -12,11 +12,11 @@ export function load() {
 }
 
 
-const convertNumberFromForm = (trialsFromForm: string, defaultValue: number) => {
-	if (Number.isNaN(trialsFromForm)) return defaultValue
+const convertNumberFromForm = (fromForm: string, defaultValue: number) => {
+	if (Number.isNaN(fromForm)) return defaultValue
 
-	const trials = Number(trialsFromForm)
-	return trials > defaultValue? trials: defaultValue
+	const asNumber = Number(fromForm)
+	return asNumber > defaultValue? asNumber: defaultValue
 }
 
 const DEFAULT_TRIALS = 10000
@@ -28,9 +28,9 @@ export const actions = {
 
 		const trials = convertNumberFromForm(data.get('trials')! as string, DEFAULT_TRIALS)
 
-		const throughputFromForm = data.get('throughputs')!
+		const throughputFromForm = data.get('throughputs')! as string
 
-		let throughputs = (throughputFromForm as string)
+		let throughputs = throughputFromForm
 			.split('\n')
 			.filter(period => period)
 			.filter(Number)
@@ -40,7 +40,7 @@ export const actions = {
 
 		if (throughputs.length === 0) throughputs = [0]
 
-		const periods = convertNumberFromForm(data.get('numPeriods')! as string, DEFAULT_PERIODS)
+		const periods = convertNumberFromForm(data.get('periods')! as string, DEFAULT_PERIODS)
 
 		results = runForRangeOfWeeks(throughputs, periods, trials);
 	}
