@@ -11,22 +11,22 @@ export function load() {
 	};
 }
 
-const MIN_TRIALS = 10000
 
-const convertTrials = (trialsFromForm: string) => {
-	if (Number.isNaN(trialsFromForm)) return MIN_TRIALS
+const convertNumberFromForm = (trialsFromForm: string, defaultValue: number) => {
+	if (Number.isNaN(trialsFromForm)) return defaultValue
 
 	const trials = Number(trialsFromForm)
-	return trials > MIN_TRIALS? trials: MIN_TRIALS
+	return trials > defaultValue? trials: defaultValue
 }
+
+const DEFAULT_TRIALS = 10000
+const DEFAULT_PERIODS = 25
 
 export const actions = {
 	default: async (event: RequestEvent) => {
 		const data = await event.request.formData();
 
-		const trialsFromForm = data.get('trials')!
-
-		const trials = convertTrials(trialsFromForm as string)
+		const trials = convertNumberFromForm(data.get('trials')! as string, DEFAULT_TRIALS)
 
 		const throughputFromForm = data.get('throughputs')!
 
@@ -40,7 +40,9 @@ export const actions = {
 
 		if (throughputs.length === 0) throughputs = [0]
 
-		results = runForRangeOfWeeks(throughputs, 25, trials);
+		const periods = convertNumberFromForm(data.get('numPeriods')! as string, DEFAULT_PERIODS)
+
+		results = runForRangeOfWeeks(throughputs, periods, trials);
 	}
 }
 
