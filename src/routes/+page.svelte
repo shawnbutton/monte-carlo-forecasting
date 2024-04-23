@@ -1,35 +1,36 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { enhance } from '$app/forms'
 
-	import { copy } from 'svelte-copy';
-	import { formatForecast } from '$lib/monte_carlo/formatForecast';
+	import { copy } from 'svelte-copy'
+	import { formatForecast } from '$lib/monte_carlo/formatForecast'
 
-	export let data;
+	export let data
 
-	$: displayed = formatForecast(data.results);
+	$: displayed = formatForecast(data.results)
 
-	let numTrials = 10000;
-	let numPeriods = 25;
+	let numTrials = 10000
+	let numPeriods = 25
+	let period = 'week'
 
-	let isLoading = false;
+	let isLoading = false
 
 	const startTrials = () => {
-		isLoading = true;
-		data.results = [];
-	};
+		isLoading = true
+		data.results = []
+	}
 
-	const dataUrl = (data: string) => 'data:x-application/text,' + data;
+	const dataUrl = (data: string) => 'data:x-application/text,' + data
 
 	// hacky html way to download forecast to file
 	const downloadTextareaContents = () => {
-		const downloadLink = document.createElement('a');
-		downloadLink.href = dataUrl(displayed);
-		downloadLink.download = 'forecast.csv';
+		const downloadLink = document.createElement('a')
+		downloadLink.href = dataUrl(displayed)
+		downloadLink.download = 'forecast.csv'
 
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		document.body.removeChild(downloadLink);
-	};
+		document.body.appendChild(downloadLink)
+		downloadLink.click()
+		document.body.removeChild(downloadLink)
+	}
 
 </script>
 
@@ -39,7 +40,7 @@
     return async ({ update }) => {
       update({ reset: false })
 			isLoading = false
-    };
+    }
   }}
 	>
 
@@ -52,11 +53,32 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
+		Period of Throughputs:
+		<div class="form-control">
+			<label class="label cursor-pointer w-40">
+				<span class="label-text text-md">Weeks</span>
+				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="week" bind:group={period}/>
+			</label>
+		</div>
+		<div class="form-control">
+			<label class="label cursor-pointer w-40">
+				<span class="label-text text-md">2-Week Sprints</span>
+				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="sprint" bind:group={period}/>
+			</label>
+		</div>
+		<div class="form-control">
+			<label class="label cursor-pointer w-40">
+				<span class="label-text text-md">Months</span>
+				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="month" bind:group={period}/>
+			</label>
+		</div>
+
+		<br />
 		<input name="periods" type="range" min="1" max="100"
 					 bind:value="{numPeriods}" class="range w-96"
 					 step="1" />
 		<br />
-		Forecast {numPeriods} period{numPeriods > 1 ? 's' : ''}:
+		Forecast {numPeriods} {period}{numPeriods > 1 ? 's' : ''}:
 
 		<br />
 		<br />
