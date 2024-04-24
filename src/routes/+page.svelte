@@ -46,14 +46,14 @@
 
 		<label class="form-control pb-5">
 			<div class="label">
-				<span class="label-text text-lg">Enter Throughput Data</span>
+				<span class="label-text text-lg">Throughput Data</span>
 			</div>
 			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
 								bind:value="{data.throughputString}"
 								placeholder="throughput data"></textarea>
 		</label>
 
-		Period of Throughputs:
+		Period of Throughputs
 		<div class="form-control">
 			<label class="label cursor-pointer w-40">
 				<span class="label-text text-md">Weeks</span>
