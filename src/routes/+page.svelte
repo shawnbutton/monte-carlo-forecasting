@@ -4,13 +4,16 @@
 	import { copy } from 'svelte-copy'
 	import { formatForecast } from '$lib/monte_carlo/formatForecast'
 
+	const currentDate = new Date().toISOString().slice(0, 10)
+
 	export let data
 
-	$: displayed = formatForecast(data.results)
+	$: displayed = formatForecast(data.results, startDate)
 
 	let numTrials = 10000
 	let numPeriods = 25
 	let period = 'week'
+	let startDate = currentDate
 
 	let isLoading = false
 
@@ -31,8 +34,6 @@
 		downloadLink.click()
 		document.body.removeChild(downloadLink)
 	}
-
-	const currentDate = new Date().toISOString().slice(0, 10)
 
 </script>
 
@@ -76,7 +77,7 @@
 		</div>
 
 		<label for="start-date" class="label cursor-pointer">Start date:</label>
-		<input type="date" id="start" name="start-date" value="{currentDate}"/>
+		<input type="date" id="start" name="start-date" bind:value="{startDate}"/>
 
 		<br />
 		<br />

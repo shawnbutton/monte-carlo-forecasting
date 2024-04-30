@@ -1,5 +1,6 @@
 import type { RequestEvent } from './$types';
 import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo';
+import { parse } from 'date-fns';
 
 let results: number[][] = []
 let throughputString: string = ''
@@ -42,7 +43,10 @@ export const actions = {
 
 		const periods = convertNumberFromForm(data.get('periods')! as string, DEFAULT_PERIODS)
 
-		console.log("|" + data.get("start-date") + "|")
+		const startDateString = data.get("start-date") as string
+		const startDate: Date = parse(startDateString, 'yyyy-MM-dd', new Date())
+
+		console.log(startDate);
 
 		results = runForRangeOfWeeks(throughputs, periods, trials);
 	}
