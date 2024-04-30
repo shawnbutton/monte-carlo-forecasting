@@ -57,6 +57,8 @@
 								placeholder="throughput data"></textarea>
 		</label>
 
+		<div class="divider"/>
+
 		Period of Throughputs
 		<div class="form-control">
 			<label class="label cursor-pointer w-40">
@@ -77,28 +79,27 @@
 			</label>
 		</div>
 
+		<div class="divider"/>
+
 		<label for="start-date" class="label cursor-pointer">Start date:</label>
 		<input type="date" id="start" name="start-date" required bind:value="{startDate}"/>
 
-		<br />
-		<br />
+		<div class="divider"/>
+
+		Forecast {numPeriods} {period}{numPeriods > 1 ? 's' : ''}:
 		<input name="periods" type="range" min="1" max="100"
 					 bind:value="{numPeriods}" class="range w-96"
 					 step="1" />
 		<br />
-		Forecast {numPeriods} {period}{numPeriods > 1 ? 's' : ''}:
 
-		<br />
-		<br />
 
+		Run {numTrials} trials:
 		<input name="trials" type="range" min="10000" max="100000" bind:value="{numTrials}"
 					 class="range w-96"
 					 step="10000" />
 		<br />
-		Run {numTrials} trials
 
-		<br />
-		<br />
+		<div class="divider"/>
 
 		<button class="btn btn-primary {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run Trials</button>
 	</form>
