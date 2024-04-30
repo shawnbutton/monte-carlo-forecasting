@@ -32,6 +32,8 @@
 		document.body.removeChild(downloadLink)
 	}
 
+	const currentDate = new Date().toISOString().slice(0, 10)
+
 </script>
 
 <div class="pl-3">
@@ -73,6 +75,10 @@
 			</label>
 		</div>
 
+		<label for="start-date" class="label cursor-pointer">Start date:</label>
+		<input type="date" id="start" name="start-date" value="{currentDate}"/>
+
+		<br />
 		<br />
 		<input name="periods" type="range" min="1" max="100"
 					 bind:value="{numPeriods}" class="range w-96"
