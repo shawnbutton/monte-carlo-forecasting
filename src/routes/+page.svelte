@@ -3,8 +3,9 @@
 
 	import { copy } from 'svelte-copy'
 	import { formatForecast } from '$lib/monte_carlo/formatForecast'
+	import { addDays, lightFormat } from 'date-fns';
 
-	const currentDate = new Date().toISOString().slice(0, 10)
+	const currentDate = lightFormat(addDays(new Date(), 1), 'yyyy-MM-dd')
 
 	export let data
 
@@ -77,7 +78,7 @@
 		</div>
 
 		<label for="start-date" class="label cursor-pointer">Start date:</label>
-		<input type="date" id="start" name="start-date" bind:value="{startDate}"/>
+		<input type="date" id="start" name="start-date" required bind:value="{startDate}"/>
 
 		<br />
 		<br />

@@ -1,9 +1,10 @@
-import { addDays, lightFormat, parse } from 'date-fns';
+import { addDays, isValid, lightFormat, parse } from 'date-fns';
 
 const dateToString = (data: Date) => lightFormat(data, 'yyyy-MM-dd');
 
 export const formatForecast = (weeks: number[][], startDateString: string) => {
-	const startDate = parse(startDateString, 'yyyy-MM-dd', new Date())
+	let startDate = parse(startDateString, 'yyyy-MM-dd', new Date())
+	if (!isValid(startDate)) startDate = new Date()
 
 	const header = `"Date", "95%", "80%", "50%", "20%", "5%"\n`;
 	return header +
