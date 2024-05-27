@@ -1,50 +1,44 @@
 const runForWeek = (samples: number[], weeks: number, trials: number) => {
-	const numSamples = samples.length;
+	const numSamples = samples.length
 
-	const sims: number[] = [];
+	const sims: number[] = []
 
 	for (let i = 0; i < trials; i++) {
-
-		let stories = 0;
+		let stories = 0
 
 		for (let week = 0; week < weeks; week++) {
-			const index = Math.floor(Math.random() * numSamples);
-			stories += samples[index];
+			const index = Math.floor(Math.random() * numSamples)
+			stories += samples[index]
 		}
 
-		sims.push(stories);
+		sims.push(stories)
 	}
 
-	const sorted = sims
-		.sort((n1, n2) => n1 - n2)
-		.reverse();
+	const sorted = sims.sort((n1, n2) => n1 - n2).reverse()
 
-	const results: number[] = [];
+	const results: number[] = []
 
 	for (let i = 0; i < 99; i++) {
-		results[i] = sorted[(i + 1) * (trials / 100)];
+		results[i] = sorted[(i + 1) * (trials / 100)]
 	}
 
-	return results;
-
-};
+	return results
+}
 
 const runSimulations = (samples: number[]) => {
-	const numSamples = samples.length;
+	const numSamples = samples.length
 
-	const sims: number[] = [];
+	const sims: number[] = []
 
 	for (let i = 0; i < 100000; i++) {
-		const index = Math.floor(Math.random() * numSamples);
-		sims.push(samples[index]);
+		const index = Math.floor(Math.random() * numSamples)
+		sims.push(samples[index])
 	}
 
-	const sortedSims = sims
-		.sort((n1, n2) => n1 - n2);
+	const sortedSims = sims.sort((n1, n2) => n1 - n2)
 
-	console.log(sortedSims);
-
-};
+	console.log(sortedSims)
+}
 
 const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) => {
 	const allSims: number[][] = []
@@ -53,10 +47,7 @@ const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) =>
 		allSims.push(thisWeek)
 	}
 
-	return allSims;
-};
+	return allSims
+}
 
-export {
-	runSimulations, runForWeek, runForRangeOfWeeks
-};
-
+export { runSimulations, runForWeek, runForRangeOfWeeks }

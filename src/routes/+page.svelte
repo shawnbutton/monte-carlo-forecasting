@@ -3,7 +3,7 @@
 
 	import { copy } from 'svelte-copy'
 	import { formatForecast } from '$lib/monte_carlo/formatForecast'
-	import { addDays, lightFormat } from 'date-fns';
+	import { addDays, lightFormat } from 'date-fns'
 
 	const currentDate = lightFormat(addDays(new Date(), 1), 'yyyy-MM-dd')
 
@@ -35,81 +35,118 @@
 		downloadLink.click()
 		document.body.removeChild(downloadLink)
 	}
-
 </script>
 
 <div class="pl-3">
-
-	<form method="POST" use:enhance={() => {
-    return async ({ update }) => {
-      update({ reset: false })
-			isLoading = false
-    }
-  }}
+	<form
+		method="POST"
+		use:enhance={() => {
+			return async ({ update }) => {
+				update({ reset: false })
+				isLoading = false
+			}
+		}}
 	>
-
 		<label class="form-control pb-5">
 			<div class="label">
 				<span class="label-text text-lg">Throughput Data</span>
 			</div>
-			<textarea name="throughputs" class="textarea textarea-bordered h-40 w-96 resize"
-								bind:value="{data.throughputString}"
-								placeholder="throughput data"></textarea>
+			<textarea
+				name="throughputs"
+				class="textarea textarea-bordered h-40 w-96 resize"
+				bind:value={data.throughputString}
+				placeholder="throughput data"
+			></textarea>
 		</label>
 
-		<div class="divider"/>
+		<div class="divider" />
 
-<!--		Period of Throughputs-->
-<!--		<div class="form-control">-->
-<!--			<label class="label cursor-pointer w-40">-->
-<!--				<span class="label-text text-md">Weeks</span>-->
-<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="week" bind:group={period}/>-->
-<!--			</label>-->
-<!--		</div>-->
-<!--		<div class="form-control">-->
-<!--			<label class="label cursor-pointer w-40">-->
-<!--				<span class="label-text text-md">2-Week Sprints</span>-->
-<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="sprint" bind:group={period}/>-->
-<!--			</label>-->
-<!--		</div>-->
-<!--		<div class="form-control">-->
-<!--			<label class="label cursor-pointer w-40">-->
-<!--				<span class="label-text text-md">Months</span>-->
-<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="month" bind:group={period}/>-->
-<!--			</label>-->
-<!--		</div>-->
+		<!--		Period of Throughputs-->
+		<!--		<div class="form-control">-->
+		<!--			<label class="label cursor-pointer w-40">-->
+		<!--				<span class="label-text text-md">Weeks</span>-->
+		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="week" bind:group={period}/>-->
+		<!--			</label>-->
+		<!--		</div>-->
+		<!--		<div class="form-control">-->
+		<!--			<label class="label cursor-pointer w-40">-->
+		<!--				<span class="label-text text-md">2-Week Sprints</span>-->
+		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="sprint" bind:group={period}/>-->
+		<!--			</label>-->
+		<!--		</div>-->
+		<!--		<div class="form-control">-->
+		<!--			<label class="label cursor-pointer w-40">-->
+		<!--				<span class="label-text text-md">Months</span>-->
+		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="month" bind:group={period}/>-->
+		<!--			</label>-->
+		<!--		</div>-->
 
-		<div class="divider"/>
+		<div class="divider" />
 		Period of Throughputs:
 		<div class="join">
-			<input class="join-item btn" type="radio" name="radio-period" aria-label="Weeks" value="week" bind:group={period}/>
-			<input class="join-item btn" type="radio" name="radio-period" aria-label="2-week Sprint" value="sprint" bind:group={period}/>
-			<input class="join-item btn" type="radio" name="radio-period" aria-label="Months" value="month" bind:group={period}/>
+			<input
+				class="join-item btn"
+				type="radio"
+				name="radio-period"
+				aria-label="Weeks"
+				value="week"
+				bind:group={period}
+			/>
+			<input
+				class="join-item btn"
+				type="radio"
+				name="radio-period"
+				aria-label="2-week Sprint"
+				value="sprint"
+				bind:group={period}
+			/>
+			<input
+				class="join-item btn"
+				type="radio"
+				name="radio-period"
+				aria-label="Months"
+				value="month"
+				bind:group={period}
+			/>
 		</div>
 
-		<div class="divider"/>
+		<div class="divider" />
 
 		<label for="start-date" class="label cursor-pointer">Start date:</label>
-		<input type="date" id="start" name="start-date" required bind:value="{startDate}"/>
+		<input type="date" id="start" name="start-date" required bind:value={startDate} />
 
-		<div class="divider"/>
+		<div class="divider" />
 
-		Forecast {numPeriods} {period}{numPeriods > 1 ? 's' : ''}:
-		<input name="periods" type="range" min="1" max="100"
-					 bind:value="{numPeriods}" class="range w-96"
-					 step="1" />
+		Forecast {numPeriods}
+		{period}{numPeriods > 1 ? 's' : ''}:
+		<input
+			name="periods"
+			type="range"
+			min="1"
+			max="100"
+			bind:value={numPeriods}
+			class="range w-96"
+			step="1"
+		/>
 		<br />
-
 
 		Run {numTrials} trials:
-		<input name="trials" type="range" min="10000" max="100000" bind:value="{numTrials}"
-					 class="range w-96"
-					 step="10000" />
+		<input
+			name="trials"
+			type="range"
+			min="10000"
+			max="100000"
+			bind:value={numTrials}
+			class="range w-96"
+			step="10000"
+		/>
 		<br />
 
-		<div class="divider"/>
+		<div class="divider" />
 
-		<button class="btn btn-primary {isLoading? 'btn-disabled': ''}" on:click={startTrials}>Run Trials</button>
+		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}" on:click={startTrials}
+			>Run Trials</button
+		>
 	</form>
 
 	<br />
@@ -118,17 +155,17 @@
 		<div class="label">
 			<span class="label-text text-lg">Forecast</span>
 		</div>
-		<textarea name="forecast" id="forecast" class="textarea textarea-bordered h-40 w-96 resize" readonly
-							placeholder="forecast data"
-							bind:value="{displayed}"></textarea>
+		<textarea
+			name="forecast"
+			id="forecast"
+			class="textarea textarea-bordered h-40 w-96 resize"
+			readonly
+			placeholder="forecast data"
+			bind:value={displayed}
+		></textarea>
 	</label>
 
-	<button class="btn btn-primary" use:copy={displayed}>
-		Copy to Clipboard
-	</button>
+	<button class="btn btn-primary" use:copy={displayed}> Copy to Clipboard </button>
 
-	<button class="btn btn-primary" on:click={downloadTextareaContents}>
-		Download CSV
-	</button>
-
+	<button class="btn btn-primary" on:click={downloadTextareaContents}> Download CSV </button>
 </div>

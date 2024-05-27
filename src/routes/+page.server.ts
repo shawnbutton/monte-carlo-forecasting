@@ -1,6 +1,6 @@
-import type { RequestEvent } from './$types';
-import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo';
-import { parse } from 'date-fns';
+import type { RequestEvent } from './$types'
+import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo'
+import { parse } from 'date-fns'
 
 let results: number[][] = []
 let throughputString: string = ''
@@ -9,15 +9,14 @@ export function load() {
 	return {
 		results,
 		throughputString
-	};
+	}
 }
-
 
 const convertNumberFromForm = (fromForm: string, defaultValue: number) => {
 	if (Number.isNaN(fromForm)) return defaultValue
 
 	const asNumber = Number(fromForm)
-	return asNumber > defaultValue? asNumber: defaultValue
+	return asNumber > defaultValue ? asNumber : defaultValue
 }
 
 const DEFAULT_TRIALS = 10000
@@ -25,7 +24,7 @@ const DEFAULT_PERIODS = 25
 
 export const actions = {
 	default: async (event: RequestEvent) => {
-		const data = await event.request.formData();
+		const data = await event.request.formData()
 
 		const trials = convertNumberFromForm(data.get('trials')! as string, DEFAULT_TRIALS)
 
@@ -35,7 +34,7 @@ export const actions = {
 			.split('\n')
 			.filter(period => period)
 			.filter(Number)
-			.map(Number);
+			.map(Number)
 
 		throughputString = throughputs.join('\n')
 
@@ -43,12 +42,11 @@ export const actions = {
 
 		const periods = convertNumberFromForm(data.get('periods')! as string, DEFAULT_PERIODS)
 
-		const startDateString = data.get("start-date") as string
+		const startDateString = data.get('start-date') as string
 		const startDate: Date = parse(startDateString, 'yyyy-MM-dd', new Date())
 
-		console.log(startDate);
+		console.log(startDate)
 
-		results = runForRangeOfWeeks(throughputs, periods, trials);
+		results = runForRangeOfWeeks(throughputs, periods, trials)
 	}
 }
-
