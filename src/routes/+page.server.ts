@@ -42,9 +42,6 @@ export const actions = {
 
 		const periods = convertNumberFromForm(data.get('periods')! as string, DEFAULT_PERIODS)
 
-		const startDateString = data.get('start-date') as string
-		const startDate: Date = parse(startDateString, 'yyyy-MM-dd', new Date())
-
 		results = runForRangeOfWeeks(throughputs, periods, trials)
 	}
 }

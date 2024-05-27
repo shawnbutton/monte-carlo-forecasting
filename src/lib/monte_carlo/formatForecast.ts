@@ -23,14 +23,17 @@ export const formatForecast = (weeks: number[][], startDateString: string, perio
 
 	const periodAdder = getPeriodAdder(startDate, period)
 
+	const percentValues = percentages
+		.map((percentage, i) => {
+		return percentage ? (i + 1) * 5: 0
+	}).filter(percentage => !!percentage)
+
 	// const header = `"Date", "95%", "80%", "50%", "20%", "5%"\n`
 	const header = `"Date", `
-		+ percentages
-			.map((percentage, i) => {
-				console.log(percentage)
-				return percentage ? (i + 1) * 5 + '%' : ''
+		+ percentValues
+			.map(percentage => {
+				return percentage + '%'
 			})
-			.filter(percentage => !!percentage)
 			.join(', ')
 		+ `\n`
 
@@ -38,7 +41,13 @@ export const formatForecast = (weeks: number[][], startDateString: string, perio
 		header +
 		weeks
 			.map((thisWeek, week) => {
-				return `${dateToString(periodAdder(week))}, ${thisWeek[95]}, ${thisWeek[80]}, ${thisWeek[50]}, ${thisWeek[20]}, ${thisWeek[5]}`
+				const thisWeekPercents = percentValues.map(percent => {
+					return thisWeek[percent]
+				})
+				.join(', ')
+
+				return `${dateToString(periodAdder(week))}, ` + thisWeekPercents
+
 			})
 			.join('\n')
 	)
