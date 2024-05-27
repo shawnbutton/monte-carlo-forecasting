@@ -60,28 +60,6 @@
 		</label>
 
 		<div class="divider" />
-
-		<!--		Period of Throughputs-->
-		<!--		<div class="form-control">-->
-		<!--			<label class="label cursor-pointer w-40">-->
-		<!--				<span class="label-text text-md">Weeks</span>-->
-		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="week" bind:group={period}/>-->
-		<!--			</label>-->
-		<!--		</div>-->
-		<!--		<div class="form-control">-->
-		<!--			<label class="label cursor-pointer w-40">-->
-		<!--				<span class="label-text text-md">2-Week Sprints</span>-->
-		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="sprint" bind:group={period}/>-->
-		<!--			</label>-->
-		<!--		</div>-->
-		<!--		<div class="form-control">-->
-		<!--			<label class="label cursor-pointer w-40">-->
-		<!--				<span class="label-text text-md">Months</span>-->
-		<!--				<input type="radio" name="radio-period" class="radio radio-sm radio-primary" value="month" bind:group={period}/>-->
-		<!--			</label>-->
-		<!--		</div>-->
-
-		<div class="divider" />
 		Period of Throughputs:
 		<div class="join">
 			<input
