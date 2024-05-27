@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-
 	import { copy } from 'svelte-copy'
-	import { formatForecast } from '$lib/monte_carlo/formatForecast'
+
 	import { addDays, lightFormat } from 'date-fns'
+
+	import { formatForecast } from '$lib/monte_carlo/formatForecast'
 
 	const currentDate = lightFormat(addDays(new Date(), 1), 'yyyy-MM-dd')
 
