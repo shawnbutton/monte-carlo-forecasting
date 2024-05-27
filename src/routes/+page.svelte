@@ -19,6 +19,12 @@
 
 	let isLoading = false
 
+	let percentages = Array(19).fill(0).map((_, i) => i * 5 + 5)
+	let displayedPercentage = Array(19).fill(false)
+	displayedPercentage[3] = true // 20%
+	displayedPercentage[9] = true // 50%
+	displayedPercentage[15] = true // 80%
+
 	const startTrials = () => {
 		isLoading = true
 		data.results = []
@@ -96,6 +102,17 @@
 
 		<div class="divider" />
 
+
+		<div class="pb-5">
+			Percentages to include:
+		</div>
+		{#each percentages as percentage, percentIndex}
+			<span class="pl-5">{percentage}%</span>
+			<input type="checkbox" bind:checked={displayedPercentage[percentIndex]} class="checkbox checkbox-primary" />
+		{/each}
+
+		<div class="divider" />
+
 		Forecast {numPeriods}
 		{period}{numPeriods > 1 ? 's' : ''}:
 		<input
@@ -124,7 +141,8 @@
 		<div class="divider" />
 
 		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}" on:click={startTrials}
-			>Run Trials</button
+		>Run Trials
+		</button
 		>
 	</form>
 
@@ -144,7 +162,7 @@
 		></textarea>
 	</label>
 
-	<button class="btn btn-primary" use:copy={displayed}> Copy to Clipboard </button>
+	<button class="btn btn-primary" use:copy={displayed}> Copy to Clipboard</button>
 
-	<button class="btn btn-primary" on:click={downloadTextareaContents}> Download CSV </button>
+	<button class="btn btn-primary" on:click={downloadTextareaContents}> Download CSV</button>
 </div>
