@@ -10,7 +10,7 @@
 
 	export let data
 
-	$: displayed = formatForecast(data.results, startDate, period)
+	$: displayed = formatForecast(data.results, startDate, period, displayedPercentage)
 
 	let numTrials = 10000
 	let numPeriods = 25

@@ -17,13 +17,23 @@ const getPeriodAdder = (startDate: Date, period: string) => {
 	}
 }
 
-export const formatForecast = (weeks: number[][], startDateString: string, period: string) => {
+export const formatForecast = (weeks: number[][], startDateString: string, period: string, percentages: boolean[]) => {
 	let startDate = parse(startDateString, 'yyyy-MM-dd', new Date())
 	if (!isValid(startDate)) startDate = new Date()
 
 	const periodAdder = getPeriodAdder(startDate, period)
 
-	const header = `"Date", "95%", "80%", "50%", "20%", "5%"\n`
+	// const header = `"Date", "95%", "80%", "50%", "20%", "5%"\n`
+	const header = `"Date", `
+		+ percentages
+			.map((percentage, i) => {
+				console.log(percentage)
+				return percentage ? (i + 1) * 5 + '%' : ''
+			})
+			.filter(percentage => !!percentage)
+			.join(', ')
+		+ `\n`
+
 	return (
 		header +
 		weeks
