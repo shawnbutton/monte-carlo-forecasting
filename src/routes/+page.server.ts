@@ -45,8 +45,6 @@ export const actions = {
 		const startDateString = data.get('start-date') as string
 		const startDate: Date = parse(startDateString, 'yyyy-MM-dd', new Date())
 
-		console.log(startDate)
-
 		results = runForRangeOfWeeks(throughputs, periods, trials)
 	}
 }

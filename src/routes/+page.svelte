@@ -9,7 +9,7 @@
 
 	export let data
 
-	$: displayed = formatForecast(data.results, startDate)
+	$: displayed = formatForecast(data.results, startDate, period)
 
 	let numTrials = 10000
 	let numPeriods = 25
