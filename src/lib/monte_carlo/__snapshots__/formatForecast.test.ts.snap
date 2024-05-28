@@ -1,6 +1,30 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`forecast formatter > formats with all percentages in weeks 1`] = `
+exports[`forecast formatter > formats in months 1`] = `
+""Date", 30%, 55%, 80%
+2024-05-05, 1, 1, 1
+2024-05-12, 2, 2, 2"
+`;
+
+exports[`forecast formatter > formats in sprints 1`] = `
+""Date", 30%, 55%, 80%
+2024-05-05, 1, 1, 1
+2024-05-19, 2, 2, 2"
+`;
+
+exports[`forecast formatter > formats in weeks 1`] = `
+""Date", 30%, 55%, 80%
+2024-05-05, 1, 1, 1
+2024-05-12, 2, 2, 2"
+`;
+
+exports[`forecast formatter > formats with a different date 1`] = `
+""Date", 30%, 55%, 80%
+2024-10-10, 1, 1, 1
+2024-10-17, 2, 2, 2"
+`;
+
+exports[`forecast formatter > formats with all percentages 1`] = `
 ""Date", 5%, 10%, 15%, 20%, 25%, 30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70%, 75%, 80%, 85%, 90%, 95%
 2024-05-05, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 2024-05-12, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2"

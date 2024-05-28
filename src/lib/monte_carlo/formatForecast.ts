@@ -25,7 +25,6 @@ export const formatForecast = (
 	period: string,
 	percentages: boolean[]
 ) => {
-	console.log(JSON.stringify(percentages))
 	let startDate = parse(startDateString, 'yyyy-MM-dd', new Date())
 	if (!isValid(startDate)) startDate = new Date()
 
