@@ -10,14 +10,14 @@ test('can enter throughput data', async ({ page }) => {
 	const throughput = page.getByPlaceholder('throughput data')
 	await throughput.fill('2\n2\n2')
 
-	await (page.getByLabel('Sprints').click())
+	await page.getByLabel('Sprints').click()
 
 	const datePicker = page.locator('#start')
 	await datePicker.fill('2024-05-05')
 
-	await(page.locator('.checkbox').first().click())
+	await page.locator('.checkbox').first().click()
 
-	await(page.locator('input[name="periods"]').fill('5'))
+	await page.locator('input[name="periods"]').fill('5')
 
 	const runButton = page.getByRole('button', { name: 'Run Trials' })
 	await runButton.click()
@@ -49,6 +49,4 @@ test('can enter throughput data', async ({ page }) => {
 2025-03-09, 46, 46, 46, 46
 2025-03-23, 48, 48, 48, 48
 2025-04-06, 50, 50, 50, 50`)
-
 })
-
