@@ -14,8 +14,7 @@ export function load() {
 const convertNumberFromForm = (fromForm: string, defaultValue: number) => {
 	if (Number.isNaN(fromForm)) return defaultValue
 
-	const asNumber = Number(fromForm)
-	return asNumber > defaultValue ? asNumber : defaultValue
+	return Number(fromForm)
 }
 
 const DEFAULT_TRIALS = 10000
