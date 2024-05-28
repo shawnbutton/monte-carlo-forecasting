@@ -1,6 +1,24 @@
 import { expect, test } from '@playwright/test'
 
-test('index page has expected h1', async ({ page }) => {
+test('home page has monte carlo title', async ({ page }) => {
 	await page.goto('/')
-	await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible()
+	await expect(page.getByRole('link', { name: 'Monte Carlo Forecaster' })).toBeVisible()
 })
+
+test('can enter throughput data', async ({ page }) => {
+	await page.goto('/')
+	const throughput = page.getByPlaceholder('throughput data')
+	await throughput.fill('2\n5\n8')
+
+	const datePicker = page.locator('#start')
+	await datePicker.fill('2024-05-05')
+
+	const runButton = page.getByRole('button', { name: 'Run Trials' })
+	await runButton.click()
+
+	const forecastTextArea = page.getByPlaceholder('forecast data')
+	await expect(forecastTextArea).toHaveValue(/2024-05-05/)
+	await expect(forecastTextArea).toHaveValue(/2024-05-12/)
+
+})
+
