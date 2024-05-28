@@ -84,7 +84,7 @@
 				class="join-item btn"
 				type="radio"
 				name="radio-period"
-				aria-label="2-week Sprint"
+				aria-label="Sprints"
 				value="sprint"
 				bind:group={period}
 			/>
