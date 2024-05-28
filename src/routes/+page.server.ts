@@ -1,6 +1,5 @@
 import type { RequestEvent } from './$types'
 import { runForRangeOfWeeks } from '$lib/monte_carlo/monte_carlo'
-import { parse } from 'date-fns'
 
 let results: number[][] = []
 let throughputString: string = ''
