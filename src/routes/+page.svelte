@@ -145,6 +145,7 @@
 
 		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}">
 			Run Trials
+			<span class="loading loading-spinner {isLoading ? '' : 'hidden'}"></span>
 		</button>
 	</form>
 
