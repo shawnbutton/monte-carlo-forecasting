@@ -25,21 +25,6 @@ const runForWeek = (samples: number[], weeks: number, trials: number) => {
 	return results
 }
 
-const runSimulations = (samples: number[]) => {
-	const numSamples = samples.length
-
-	const sims: number[] = []
-
-	for (let i = 0; i < 100000; i++) {
-		const index = Math.floor(Math.random() * numSamples)
-		sims.push(samples[index])
-	}
-
-	const sortedSims = sims.sort((n1, n2) => n1 - n2)
-
-	console.log(sortedSims)
-}
-
 const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) => {
 	const allSims: number[][] = []
 	for (let week = 1; week < weeks + 1; week++) {
@@ -50,4 +35,4 @@ const runForRangeOfWeeks = (samples: number[], weeks: number, trials: number) =>
 	return allSims
 }
 
-export { runSimulations, runForWeek, runForRangeOfWeeks }
+export { runForRangeOfWeeks }
