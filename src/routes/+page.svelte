@@ -145,7 +145,6 @@
 
 		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}">
 			Run Trials
-			<span class="loading loading-spinner {isLoading ? '' : 'hidden'}"></span>
 		</button>
 	</form>
 
@@ -158,11 +157,12 @@
 		<textarea
 			name="forecast"
 			id="forecast"
-			class="textarea textarea-bordered h-40 w-96 resize"
+			class="textarea textarea-bordered h-40 w-96 resize {isLoading ? 'hidden' : ''}"
 			readonly
 			placeholder="forecast data"
 			bind:value={displayed}
 		></textarea>
+		<div class="skeleton h-40 w-96 {isLoading ? '' : 'hidden'}"></div>
 	</label>
 
 	<button class="btn btn-primary" use:copy={displayed}> Copy to Clipboard</button>
