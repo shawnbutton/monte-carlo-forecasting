@@ -28,11 +28,6 @@
 	displayedPercentage[9] = true // 50%
 	displayedPercentage[15] = true // 80%
 
-	const startTrials = () => {
-		isLoading = true
-		data.results = []
-	}
-
 	const dataUrl = (data: string) => 'data:x-application/text,' + data
 
 	// hacky html way to download forecast to file
@@ -51,6 +46,9 @@
 	<form
 		method="POST"
 		use:enhance={() => {
+			isLoading = true
+			data.results = []
+
 			return async ({ update }) => {
 				update({ reset: false })
 				isLoading = false
@@ -66,6 +64,7 @@
 				class="textarea textarea-bordered h-40 w-96 resize"
 				bind:value={data.throughputString}
 				placeholder="throughput data on separate lines"
+				required
 			></textarea>
 		</label>
 
@@ -144,8 +143,8 @@
 
 		<div class="divider" />
 
-		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}" on:click={startTrials}
-			>Run Trials
+		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}">
+			Run Trials
 		</button>
 	</form>
 
