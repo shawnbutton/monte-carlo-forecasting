@@ -65,7 +65,7 @@
 				name="throughputs"
 				class="textarea textarea-bordered h-40 w-96 resize"
 				bind:value={data.throughputString}
-				placeholder="throughput data"
+				placeholder="throughput data on separate lines"
 			></textarea>
 		</label>
 
