@@ -57,7 +57,7 @@
 	>
 		<label class="form-control pb-5">
 			<div class="label">
-				<span class="label-text text-lg">Throughput Data</span>
+				<span class="label-text text-lg">Throughput Data:</span>
 			</div>
 			<textarea
 				name="throughputs"
@@ -99,12 +99,12 @@
 
 		<div class="divider" />
 
-		<label for="start-date" class="label cursor-pointer">Start date:</label>
+		<label for="start-date" class="label cursor-pointer">Forecast Start Date:</label>
 		<input type="date" id="start" name="start-date" required bind:value={startDate} />
 
 		<div class="divider" />
 
-		<div class="pb-5">Percentages to include:</div>
+		<div class="pb-5">Percentages to Include:</div>
 		{#each percentages as percentage, percentIndex}
 			<span class="pl-5">{percentage}%</span>
 			<input
@@ -129,7 +129,7 @@
 		/>
 		<br />
 
-		Run {numTrials} trials:
+		Run {numTrials} Trials:
 		<input
 			name="trials"
 			type="range"
@@ -152,7 +152,7 @@
 
 	<label class="form-control pb-5">
 		<div class="label">
-			<span class="label-text text-lg">Forecast</span>
+			<span class="label-text text-lg">Forecast:</span>
 		</div>
 		<textarea
 			name="forecast"
