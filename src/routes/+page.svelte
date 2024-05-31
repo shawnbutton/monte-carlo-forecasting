@@ -57,19 +57,19 @@
 	>
 		<label class="form-control pb-5">
 			<div class="label">
-				<span class="label-text text-lg">Throughput Data:</span>
+				<span class="label-text text-lg">Throughput History:</span>
 			</div>
 			<textarea
 				name="throughputs"
 				class="textarea textarea-bordered h-40 w-96 resize"
 				bind:value={data.throughputString}
-				placeholder="throughput data on separate lines"
+				placeholder="For example, story points, or # of stories completed. Might be per sprint, per week, or per month. Enter each number on a separate line."
 				required
 			></textarea>
 		</label>
 
 		<div class="divider" />
-		Period of Throughputs:
+		Period of Data:
 		<div class="join">
 			<input
 				class="join-item btn"
@@ -97,7 +97,22 @@
 			/>
 		</div>
 
-		<div class="divider" />
+		<br/>
+		<br/>
+
+		Forecast {numPeriods}
+		{period}{numPeriods > 1 ? 's' : ''}:
+		<input
+			name="periods"
+			type="range"
+			min="1"
+			max="100"
+			bind:value={numPeriods}
+			class="range w-96"
+			step="1"
+		/>
+		<br />
+		<br/>
 
 		<label for="start-date" class="label cursor-pointer">Forecast Start Date:</label>
 		<input type="date" id="start" name="start-date" required bind:value={startDate} />
@@ -116,19 +131,6 @@
 
 		<div class="divider" />
 
-		Forecast {numPeriods}
-		{period}{numPeriods > 1 ? 's' : ''}:
-		<input
-			name="periods"
-			type="range"
-			min="1"
-			max="100"
-			bind:value={numPeriods}
-			class="range w-96"
-			step="1"
-		/>
-		<br />
-
 		Run {numTrials} Trials:
 		<input
 			name="trials"
@@ -144,7 +146,7 @@
 		<div class="divider" />
 
 		<button class="btn btn-primary {isLoading ? 'btn-disabled' : ''}">
-			Run Trials
+			Create Forecast
 		</button>
 	</form>
 
